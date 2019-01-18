@@ -5,8 +5,9 @@ askquestion - picks colour
 */
 
 const colourArray = ["red", "orange", "yellow", "green", "blue", "purple", "pink"];
+let colourArrayCopy;
+//timeout array to enable clear all
 let timeouts = [];
-//store timeout
 let waitForUser;
 
 const boxOne = document.querySelector('#colourOne');
@@ -15,8 +16,26 @@ const boxThree = document.querySelector('#colourThree');
 const boxFour = document.querySelector('#colourFour');
 const question = document.querySelector('#question');
 
-const startGame = () => {
+const boxesArray = [boxOne, boxTwo, boxThree, boxFour];
+let boxesArrayCopy;
 
+const startGame = () => {
+  colourArrayCopy = [...colourArray];
+  boxesArrayCopy = [...boxesArray];
+  //start a timer
+  startTimeout();
+  //get a random number for colour (max 7)
+  //update the text in question to the colourArrayCopy[randomNum]
+  //choose a random number to pick correct answer box (max 4)
+  //set background of that box to colourArrayCopy[randomNum]
+  //remove that box from box array copy
+  //remove that colour from the colour copy array
+  //loop through boxescopy
+    //random number (max colourcopyarray length)
+    //random number (max boxescopy length)
+    //set background of chosen box to chosen colour
+    //remove colour and box from array
+//condesne this - duplicate instructions should be broken out into functions
 }
 
 const startTimeout = () => {
@@ -26,10 +45,13 @@ const startTimeout = () => {
 
 const stopTimeout = () => {
   timeouts.forEach(timeout => clearTimeout(timeout))
+  //reset array of colours for next round
+  colourArrayCopy = [...colourArray];
+  boxesArrayCopy = [...boxesArray];
 }
 
-const randomColour = () => {
-
+const randomNumber = (max) => {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 boxOne.addEventListener('click', (e) => {
