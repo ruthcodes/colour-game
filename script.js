@@ -25,17 +25,31 @@ const startGame = () => {
   //start a timer
   startTimeout();
   //get a random number for colour (max 7)
+  let randomNumC = randomNumber(7);
   //update the text in question to the colourArrayCopy[randomNum]
+  question.innerHTML = colourArrayCopy[randomNumC];
   //choose a random number to pick correct answer box (max 4)
+  let randomNumB = randomNumber(4);
   //set background of that box to colourArrayCopy[randomNum]
+  boxesArrayCopy[randomNumB].style.background = colourArrayCopy[randomNumC];
   //remove that box from box array copy
+  boxesArrayCopy = boxesArrayCopy.filter(box => box !== boxesArrayCopy[randomNumB]);
   //remove that colour from the colour copy array
+  colourArrayCopy = colourArrayCopy.filter(colour => colour !== colourArrayCopy[randomNumC]);
+
   //loop through boxescopy
+  boxesArrayCopy.forEach(box => {
+    randomNumC = randomNumber(colourArrayCopy.length);
+    randomNumB = randomNumber(boxesArrayCopy.length);
+    boxesArrayCopy[randomNumB].style.background = colourArrayCopy[randomNumC];
+    boxesArrayCopy = boxesArrayCopy.filter(box => box !== boxesArrayCopy[randomNumB]);
+    colourArrayCopy = colourArrayCopy.filter(colour => colour !== colourArrayCopy[randomNumC]);
+  })
     //random number (max colourcopyarray length)
     //random number (max boxescopy length)
     //set background of chosen box to chosen colour
     //remove colour and box from array
-//condesne this - duplicate instructions should be broken out into functions
+//condense this - duplicate instructions should be broken out into functions
 }
 
 const startTimeout = () => {
@@ -59,7 +73,7 @@ boxOne.addEventListener('click', (e) => {
 })
 
 question.addEventListener('click', (e)=> {
-  startTimeout();
+  startGame();
 })
 
 
