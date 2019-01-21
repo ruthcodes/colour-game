@@ -1,9 +1,3 @@
-/*functions:
-start - starts interval
-askquestion - picks colour
-
-*/
-
 const colourArray = ["red", "orange", "yellow", "green", "blue", "purple", "pink"];
 let colourArrayCopy;
 //timeout array to enable clear all
@@ -24,32 +18,37 @@ const startGame = () => {
   boxesArrayCopy = [...boxesArray];
   //start a timer
   startTimeout();
-  //get a random number for colour (max 7)
+  //for colour
   let randomNumC = randomNumber(7);
-  //update the text in question to the colourArrayCopy[randomNum]
-  question.innerHTML = colourArrayCopy[randomNumC];
-  //choose a random number to pick correct answer box (max 4)
+  //for box
   let randomNumB = randomNumber(4);
-  //set background of that box to colourArrayCopy[randomNum]
-  boxesArrayCopy[randomNumB].style.background = colourArrayCopy[randomNumC];
-  //remove that box from box array copy
-  boxesArrayCopy = boxesArrayCopy.filter(box => box !== boxesArrayCopy[randomNumB]);
-  //remove that colour from the colour copy array
-  colourArrayCopy = colourArrayCopy.filter(colour => colour !== colourArrayCopy[randomNumC]);
+  //update the text
+  question.innerHTML = colourArrayCopy[randomNumC];
+  //update the correct answer box colour
+  changeColours(randomNumB, randomNumC);
 
-  //loop through boxescopy
+  let randomIncorrectBox = boxesArrayCopy[randomNumber(3)];
+  let randomIncorrectBox2 = boxesArrayCopy[randomNumber(3)];
+
+
+  //loop through rest of boxes
   boxesArrayCopy.forEach(box => {
     randomNumC = randomNumber(colourArrayCopy.length);
     randomNumB = randomNumber(boxesArrayCopy.length);
-    boxesArrayCopy[randomNumB].style.background = colourArrayCopy[randomNumC];
-    boxesArrayCopy = boxesArrayCopy.filter(box => box !== boxesArrayCopy[randomNumB]);
-    colourArrayCopy = colourArrayCopy.filter(colour => colour !== colourArrayCopy[randomNumC]);
+    changeColours(randomNumB, randomNumC)
   })
-    //random number (max colourcopyarray length)
-    //random number (max boxescopy length)
-    //set background of chosen box to chosen colour
-    //remove colour and box from array
-//condense this - duplicate instructions should be broken out into functions
+  question.style.background = randomIncorrectBox.style.background;
+  question.style.color = randomIncorrectBox2.style.background;
+}
+
+const updateArray = (array, number) => {
+  return array.filter(item => item !== array[number]);
+}
+
+const changeColours = (randBox, randColour) => {
+  boxesArrayCopy[randBox].style.background = colourArrayCopy[randColour];
+  boxesArrayCopy = updateArray(boxesArrayCopy, randBox);
+  colourArrayCopy = updateArray(colourArrayCopy, randColour);
 }
 
 const startTimeout = () => {
@@ -67,6 +66,8 @@ const stopTimeout = () => {
 const randomNumber = (max) => {
   return Math.floor(Math.random() * Math.floor(max));
 }
+
+
 
 boxOne.addEventListener('click', (e) => {
   stopTimeout();
