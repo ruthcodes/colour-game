@@ -9,11 +9,14 @@ const boxTwo = document.querySelector('#colourTwo');
 const boxThree = document.querySelector('#colourThree');
 const boxFour = document.querySelector('#colourFour');
 const question = document.querySelector('#question');
+const answers = [...document.querySelectorAll('.answer')];
 
 const boxesArray = [boxOne, boxTwo, boxThree, boxFour];
 let boxesArrayCopy;
 
 const startGame = () => {
+  //clear any previosuly set timeouts
+  stopTimeout();
   colourArrayCopy = [...colourArray];
   boxesArrayCopy = [...boxesArray];
   //start a timer
@@ -52,7 +55,12 @@ const changeColours = (randBox, randColour) => {
 }
 
 const startTimeout = () => {
-  waitForUser = setTimeout(()=> alert("hi"), 3000);
+  waitForUser = setTimeout(()=> {
+    alert("Too slow!");
+    //clear any other timers that user may have set on loss
+    timeouts.forEach(timeout => clearTimeout(timeout));
+    resetGame();
+  }, 2000);
   timeouts.push(waitForUser);
 }
 
@@ -67,11 +75,23 @@ const randomNumber = (max) => {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+const checkAnswer = (e) => {
+  e.target.style.background === question.innerHTML ? startGame() : wrongAnswer();
+}
 
-
-boxOne.addEventListener('click', (e) => {
+const wrongAnswer = () => {
   stopTimeout();
-})
+  alert("Wrong answer!");
+  resetGame();
+}
+
+const resetGame = () => {
+  question.innerHTML = "start";
+  question.style.background = "black";
+  question.style.color = "white";
+}
+
+answers.forEach(answer => answer.addEventListener('click', checkAnswer))
 
 question.addEventListener('click', (e)=> {
   startGame();

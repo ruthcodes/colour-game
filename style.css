@@ -14,6 +14,7 @@
 body {
   background: grey;
   text-align: center;
+  font-family: "Chalkduster";
 }
 
 h1{
@@ -44,41 +45,36 @@ h1{
   font-size: 50px;
   border: 2px solid black;
   text-shadow: black 1px 0 5px;
-  font-family: "Chalkduster";
+  cursor: pointer;
+}
+
+.answer {
+  cursor: pointer;
+  position: absolute;
+  width: 50%;
+  height: 50%;
 }
 
 #colourOne {
-  position: absolute;
   top: 0%;
   left: 0%;
-  width: 50%;
-  height: 50%;
   background: green;
 }
 
 #colourTwo {
-  position: absolute;
   top: 0%;
   right: 0%;
-  width: 50%;
-  height: 50%;
   background: blue;
 }
 
 #colourThree {
-  position: absolute;
   top: 50%;
   left: 0%;
-  width: 50%;
-  height: 50%;
   background: yellow;
 }
 
 #colourFour {
-  position: absolute;
   top: 50%;
   right: 0%;
-  width: 50%;
-  height: 50%;
   background: purple;
 }
