@@ -10,6 +10,7 @@ const boxThree = document.querySelector('#colourThree');
 const boxFour = document.querySelector('#colourFour');
 const question = document.querySelector('#question');
 const answers = [...document.querySelectorAll('.answer')];
+const count = document.querySelector('span');
 
 const boxesArray = [boxOne, boxTwo, boxThree, boxFour];
 let boxesArrayCopy;
@@ -76,7 +77,12 @@ const randomNumber = (max) => {
 }
 
 const checkAnswer = (e) => {
-  e.target.style.background === question.innerHTML ? startGame() : wrongAnswer();
+  if (e.target.style.background === question.innerHTML){
+    incrementCounter();
+    startGame();
+  } else {
+    wrongAnswer();
+  }
 }
 
 const wrongAnswer = () => {
@@ -89,6 +95,12 @@ const resetGame = () => {
   question.innerHTML = "start";
   question.style.background = "black";
   question.style.color = "white";
+  count.innerHTML = "0";
+}
+
+const incrementCounter = () => {
+  let current = +count.innerHTML;
+  count.innerHTML = ++current;
 }
 
 answers.forEach(answer => answer.addEventListener('click', checkAnswer))
@@ -96,18 +108,6 @@ answers.forEach(answer => answer.addEventListener('click', checkAnswer))
 question.addEventListener('click', (e)=> {
   startGame();
 })
-
-
-//array of possible colours
-
-//each turn, randomly choose a colour from array and update question text
-
-//choose a random colour and update question background
-
-//update a random box to the question colour, and 3 others to other random colours from array
-
-//increment counter on correct guess
-
 
 
 //game modes:
