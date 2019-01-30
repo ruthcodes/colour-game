@@ -3,6 +3,7 @@ let colourArrayCopy;
 //timeout array to enable clear all
 let timeouts = [];
 let waitForUser;
+let game = false;
 
 const boxOne = document.querySelector('#colourOne');
 const boxTwo = document.querySelector('#colourTwo');
@@ -17,6 +18,7 @@ let boxesArrayCopy;
 
 
 const startGame = () => {
+  game = true;
   //clear any previosuly set timeouts
   stopTimeout();
   colourArrayCopy = [...colourArray];
@@ -112,7 +114,11 @@ const resetGame = () => {
   question.innerHTML = "start";
   question.style.background = "black";
   question.style.color = "white";
+  boxesArray.forEach(box => {
+    box.firstChild.innerHTML = ""
+  })
   count.innerHTML = "0";
+  game = false;
 }
 
 const incrementCounter = () => {
@@ -123,7 +129,9 @@ const incrementCounter = () => {
 answers.forEach(answer => answer.addEventListener('click', checkAnswer))
 
 question.addEventListener('click', (e)=> {
-  startGame();
+  if (!game){
+      startGame();
+  }
 })
 
 

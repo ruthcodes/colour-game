@@ -10,15 +10,25 @@
   font-style: normal;
 }
 
+html{
+  min-width: 320px;
+}
 
 body {
-  background: grey;
+  background: #EBECE4;
   text-align: center;
-  font-family: "Chalkduster";
+  font-family: 'Montserrat', sans-serif;
 }
 
 h1{
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 50px;
+  margin-bottom: 5px;
+}
+
+h3{
+  padding: 0px 60px;
 }
 
 #box {
@@ -27,6 +37,7 @@ h1{
   margin: auto;
   width: 70%;
   height: 70%;
+  font-family: "Chalkduster";
 }
 
 #question {
@@ -37,15 +48,16 @@ h1{
   z-index: 1;
   background: black;
   color: white;
-  height: 50%;
-  width: 50%;
+  height: 30%;
+  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 50px;
+  font-size: 40px;
   border: 2px solid black;
   text-shadow: black 1px 0 5px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .answer {
@@ -64,6 +76,7 @@ h1{
   left: 0%;
   background: green;
   align-items: flex-start;
+  border-radius: 10px 0px 0px 0px;
 }
 
 #colourTwo {
@@ -71,6 +84,7 @@ h1{
   right: 0%;
   background: blue;
   align-items: flex-start;
+  border-radius: 0px 10px 0px 0px;
 }
 
 #colourThree {
@@ -78,6 +92,7 @@ h1{
   left: 0%;
   background: yellow;
   align-items: flex-end;
+  border-radius: 0px 0px 0px 10px;
 }
 
 #colourFour {
@@ -85,9 +100,22 @@ h1{
   right: 0%;
   background: purple;
   align-items: flex-end;
+  border-radius: 0px 0px 10px 0px;
 }
 
 .colourText {
-  font-size: 50px;
+  font-size: 40px;
   padding: 20px;
+}
+
+@media screen and (max-width:600px) {
+  #question, .colourText{
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width:400px){
+  #question, .colourText{
+    font-size: 20px;
+  }
 }
