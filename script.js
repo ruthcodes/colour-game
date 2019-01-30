@@ -86,7 +86,15 @@ const randomNumber = (max) => {
 }
 
 const checkAnswer = (e) => {
-  if (e.target.style.background === question.innerHTML){
+  let check;
+  //if click on word, check background of parent box
+  if (e.target.className === "colourText"){
+    check = e.target.parentElement.style.background;
+  } else {
+    check = e.target.style.background;
+  }
+
+  if (check === question.innerHTML){
     incrementCounter();
     startGame();
   } else {
