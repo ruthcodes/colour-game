@@ -10,10 +10,11 @@ const boxThree = document.querySelector('#colourThree');
 const boxFour = document.querySelector('#colourFour');
 const question = document.querySelector('#question');
 const answers = [...document.querySelectorAll('.answer')];
-const count = document.querySelector('span');
+const count = document.querySelector('#score');
 
 const boxesArray = [boxOne, boxTwo, boxThree, boxFour];
 let boxesArrayCopy;
+
 
 const startGame = () => {
   //clear any previosuly set timeouts
@@ -30,6 +31,7 @@ const startGame = () => {
   question.innerHTML = colourArrayCopy[randomNumC];
   //update the correct answer box colour
   changeColours(randomNumB, randomNumC);
+  addColourWords();
 
   let randomIncorrectBox = boxesArrayCopy[randomNumber(3)];
   let randomIncorrectBox2 = boxesArrayCopy[randomNumber(3)];
@@ -43,6 +45,13 @@ const startGame = () => {
   })
   question.style.background = randomIncorrectBox.style.background;
   question.style.color = randomIncorrectBox2.style.background;
+}
+
+const addColourWords = () => {
+  boxesArray.forEach(box => {
+    box.firstChild.innerHTML = colourArray[randomNumber(7)];
+    box.firstChild.style.color = colourArray[randomNumber(7)];
+  })
 }
 
 const updateArray = (array, number) => {
@@ -108,6 +117,8 @@ answers.forEach(answer => answer.addEventListener('click', checkAnswer))
 question.addEventListener('click', (e)=> {
   startGame();
 })
+
+
 
 
 //game modes:

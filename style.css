@@ -53,28 +53,41 @@ h1{
   position: absolute;
   width: 50%;
   height: 50%;
+  display: flex;
+  justify-content: center;
+  text-shadow: black 1px 0 5px;
+  font-size: 20px;
 }
 
 #colourOne {
   top: 0%;
   left: 0%;
   background: green;
+  align-items: flex-start;
 }
 
 #colourTwo {
   top: 0%;
   right: 0%;
   background: blue;
+  align-items: flex-start;
 }
 
 #colourThree {
   top: 50%;
   left: 0%;
   background: yellow;
+  align-items: flex-end;
 }
 
 #colourFour {
   top: 50%;
   right: 0%;
   background: purple;
+  align-items: flex-end;
+}
+
+.colourText {
+  font-size: 50px;
+  padding: 20px;
 }
